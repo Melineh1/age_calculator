@@ -37,7 +37,7 @@
                 const days = Math.floor(hours / 24);
                 const months = Math.floor(days / 30.44); // Average days in a month
 
-                document.getElementById('result').innerText = `You have been alive for approximately ${months} months, ${days % 30.44} days, ${hours % 24} hours, and ${minutes % 60} minutes.`;
+                document.getElementById('result').innerText = `You have been alive for approximately ${months} months, ${days} days, ${hours % 24} hours, and ${minutes % 60} minutes.`;
             } else {
                 document.getElementById('result').innerText = 'Please enter a valid birthdate and time.';
             }

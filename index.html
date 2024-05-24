@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age to Days Calculator</title>
+    <title>Age to Time Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,20 +17,29 @@
     </style>
 </head>
 <body>
-    <h1>Age to Days Calculator</h1>
-    <p>Enter your age in years:</p>
-    <input type="number" id="ageInput" placeholder="Enter age in years">
-    <button onclick="calculateDays()">Calculate Days</button>
+    <h1>Age to Time Calculator</h1>
+    <p>Enter your birthdate and time:</p>
+    <input type="datetime-local" id="birthdateInput">
+    <button onclick="calculateTime()">Calculate Time</button>
     <p id="result"></p>
 
     <script>
-        function calculateDays() {
-            const age = document.getElementById('ageInput').value;
-            if (age && age > 0) {
-                const days = age * 365.25; // Considering leap years
-                document.getElementById('result').innerText = `You have been alive for approximately ${Math.floor(days)} days.`;
+        function calculateTime() {
+            const birthdateInput = document.getElementById('birthdateInput').value;
+            if (birthdateInput) {
+                const birthdate = new Date(birthdateInput);
+                const now = new Date();
+                
+                let diff = now - birthdate;
+                const minutes = Math.floor(diff / 60000);
+                diff -= minutes * 60000;
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+                const months = Math.floor(days / 30.44); // Average days in a month
+
+                document.getElementById('result').innerText = `You have been alive for approximately ${months} months, ${days % 30.44} days, ${hours % 24} hours, and ${minutes % 60} minutes.`;
             } else {
-                document.getElementById('result').innerText = 'Please enter a valid age.';
+                document.getElementById('result').innerText = 'Please enter a valid birthdate and time.';
             }
         }
     </script>
